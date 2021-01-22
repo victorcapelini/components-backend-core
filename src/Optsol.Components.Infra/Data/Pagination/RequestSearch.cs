@@ -2,12 +2,10 @@ using System;
 
 namespace Optsol.Components.Infra.Data
 {
-    public class RequestSearch<TSearch>
-        where TSearch : class
+    public class RequestSearch
     {
-        public TSearch Search { get; set; }
+        private uint page;
 
-        public uint page;
         public uint Page
         {
             get
@@ -17,10 +15,25 @@ namespace Optsol.Components.Infra.Data
 
             set
             {
-                page = value <= 0 ? 1 : value;
+                page = SetPageValue(value);
             }
         }
 
         public uint? PageSize { get; set; }
+
+        private static uint SetPageValue(uint value)
+        {
+            var menorIgualZero = value <= 0;
+            if (menorIgualZero)
+                return 1;
+
+            return value;
+        }
+
+    }
+
+    public class RequestSearch<TSearch> : RequestSearch
+    {
+        public TSearch Search { get; set; }
     }
 }

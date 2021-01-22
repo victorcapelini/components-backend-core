@@ -7,7 +7,7 @@ namespace Optsol.Components.Application.Result
     public class ServiceResult : Notifiable { }
 
     public class ServiceResult<TDto> : ServiceResult
-        where TDto: BaseDataTransferObject
+        where TDto : BaseDataTransferObject
     {
         public TDto Data { get; private set; }
 
@@ -21,7 +21,7 @@ namespace Optsol.Components.Application.Result
     }
 
     public class ServiceResultList<TDto> : ServiceResult
-        where TDto: BaseDataTransferObject
+        where TDto : BaseDataTransferObject
     {
         public IEnumerable<TDto> DataList { get; private set; }
 

@@ -11,13 +11,10 @@ namespace Optsol.Playground.Infra.Data.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.ApplyConfiguration(new ClienteConfiguration());
             modelBuilder.ApplyConfiguration(new CartaoCreditoConfiguration());
-
-            // modelBuilder.Seed();
         }
     }
 }

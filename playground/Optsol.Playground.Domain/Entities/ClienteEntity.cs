@@ -13,10 +13,10 @@ namespace Optsol.Playground.Domain.Entities
         public EmailValueObject Email { get; private set; }
 
         public bool Ativo { get; private set; }
-        public bool PossuiCartao 
-        { 
-            get 
-            { 
+        public bool PossuiCartao
+        {
+            get
+            {
                 return ExisteCartoesValidos();
             }
         }
@@ -58,7 +58,7 @@ namespace Optsol.Playground.Domain.Entities
         public ClienteEntity AdicionarCartao(CartaoCreditoEntity cartaoCreditoEntity)
         {
             cartaoCreditoEntity.Validate();
-            if(cartaoCreditoEntity.Valid)
+            if (cartaoCreditoEntity.Valid)
                 this.Cartoes.Add(cartaoCreditoEntity);
 
             AddNotifications(cartaoCreditoEntity);

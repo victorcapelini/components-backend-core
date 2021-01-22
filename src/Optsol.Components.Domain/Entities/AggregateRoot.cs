@@ -17,8 +17,7 @@ namespace Optsol.Components.Domain.Entities
 
     public class AggregateRoot : AggregateRoot<Guid>
     {
-        public AggregateRoot()
-            : base()
+        public AggregateRoot() : base()
         {
             Id = Guid.NewGuid();
         }

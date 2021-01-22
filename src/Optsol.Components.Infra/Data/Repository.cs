@@ -65,19 +65,20 @@ namespace Optsol.Components.Infra.Data
         {
             var searchResult = new SearchResult<TEntity>(page, pageSize);
 
-            searchResult.Total = await query.CountAsync();
-
+            var totalSearch = await query.CountAsync();
+            searchResult.SetTotalValue(totalSearch);
+            
             query = ApplyPagination(query, page, pageSize);
 
-            searchResult.Items = await query.AsAsyncEnumerable().AsyncEnumerableToEnumerable();
-            searchResult.TotalItems = searchResult.Items.Count();
+            var items = await query.AsAsyncEnumerable().AsyncEnumerableToEnumerable();
+            searchResult.SetTotalItems(items);
 
             return searchResult;
         }
 
         private IQueryable<TEntity> ApplyPagination(IQueryable<TEntity> query, uint page, uint? pageSize)
         {
-            var skip = page <= 0 ? 1 : --page * (pageSize ?? 0);
+            var skip = page * (pageSize ?? 0);
 
             query = query.Skip(skip.ToInt());
 
@@ -110,6 +111,7 @@ namespace Optsol.Components.Infra.Data
 
             return query;
         }
+
         private IQueryable<TEntity> ApplyOrderBy(IQueryable<TEntity> query, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null)
         {
             var orderByIsNotNull = orderBy != null;

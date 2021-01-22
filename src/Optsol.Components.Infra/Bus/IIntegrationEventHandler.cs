@@ -8,7 +8,7 @@ namespace Optsol.Components.Infra.Bus
         Task Handle(TIntegrationEvent @event);
     }
 
-    public interface IIntegrationEvent 
+    public interface IIntegrationEvent
     {
 
     }

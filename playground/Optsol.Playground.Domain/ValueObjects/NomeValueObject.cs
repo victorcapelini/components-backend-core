@@ -11,7 +11,7 @@ namespace Optsol.Playground.Domain.ValueObjects
         public NomeValueObject(string nome, string sobreNome)
         {
             Nome = nome;
-            SobreNome = sobreNome;   
+            SobreNome = sobreNome;
 
             Validate();
         }

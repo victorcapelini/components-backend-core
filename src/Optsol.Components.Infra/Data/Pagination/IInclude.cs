@@ -4,8 +4,8 @@ using Optsol.Components.Domain.Entities;
 
 namespace Optsol.Components.Infra.Data
 {
-    public interface IInclude<TEntity> 
-        where TEntity: IEntity
+    public interface IInclude<TEntity>
+        where TEntity : IEntity
     {
         Func<IQueryable<TEntity>, IQueryable<TEntity>> GetInclude();
     }

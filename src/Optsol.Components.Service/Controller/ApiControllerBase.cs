@@ -34,6 +34,7 @@ namespace Optsol.Components.Service
             _logger?.LogInformation($"Inicializando Controller Base<{ typeof(TEntity).Name }, Guid>");
 
             _responseFactory = responseFactory ?? throw new ResponseFactoryNullException();
+
             _serviceApplication = serviceApplication;
         }
 

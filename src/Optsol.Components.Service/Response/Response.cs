@@ -6,13 +6,14 @@ namespace Optsol.Components.Service.Response
     public class Response
     {
         public bool Success { get; set; }
+
         public bool Failure { get; set; }
 
         public IEnumerable<string> Messages { get; set; }
 
         public Response()
         {
-            
+
         }
 
         public Response(bool success)
@@ -27,7 +28,7 @@ namespace Optsol.Components.Service.Response
             Messages = messages;
         }
     }
-    
+
     public class Response<TData> : Response
         where TData : BaseDataTransferObject
     {
@@ -35,7 +36,7 @@ namespace Optsol.Components.Service.Response
 
         public Response()
         {
-            
+
         }
 
         public Response(TData data, bool success)
@@ -54,16 +55,16 @@ namespace Optsol.Components.Service.Response
     }
 
     public class ResponseList<TData> : Response
-        where TData: BaseDataTransferObject
+        where TData : BaseDataTransferObject
     {
         public IEnumerable<TData> DataList { get; set; }
 
         public ResponseList()
         {
-            
+
         }
-        
-        public ResponseList(IEnumerable<TData> dataList, bool success) 
+
+        public ResponseList(IEnumerable<TData> dataList, bool success)
             : base(success)
         {
             DataList = dataList;

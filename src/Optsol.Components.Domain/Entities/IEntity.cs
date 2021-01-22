@@ -5,6 +5,7 @@ namespace Optsol.Components.Domain.Entities
     public interface IEntity
     {
         DateTime CreatedDate { get; }
+
         void Validate();
     }
 

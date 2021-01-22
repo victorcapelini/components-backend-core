@@ -145,17 +145,16 @@ namespace Optsol.Components.Application.Service
             return false;
         }
 
-        public virtual void Dispose()
-        {
-
-            GC.SuppressFinalize(this);
-            _unitOfWork.Dispose();
-        }
-
         private void LogNotifications(string method, ServiceResult serviceResult)
         {
             if (serviceResult.Invalid)
                 _logger?.LogInformation($"Método: { method } Valid: { serviceResult.Valid } Notifications: { serviceResult.Notifications.ToJson() }");
+        }
+
+        public virtual void Dispose()
+        {
+            GC.SuppressFinalize(this);
+            _unitOfWork.Dispose();
         }
     }
 }

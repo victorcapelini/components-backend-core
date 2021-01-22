@@ -7,10 +7,10 @@ namespace Optsol.Components.Service.Response
     {
         Response Create(ServiceResult serviceResult);
 
-        Response<TData> Create<TData>(ServiceResult<TData> serviceResult) 
+        Response<TData> Create<TData>(ServiceResult<TData> serviceResult)
             where TData : BaseDataTransferObject;
 
-        ResponseList<TData> Create<TData>(ServiceResultList<TData> serviceResult) 
+        ResponseList<TData> Create<TData>(ServiceResultList<TData> serviceResult)
             where TData : BaseDataTransferObject;
     }
 }
