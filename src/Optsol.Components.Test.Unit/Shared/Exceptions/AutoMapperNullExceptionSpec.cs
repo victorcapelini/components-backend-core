@@ -10,7 +10,7 @@ namespace Optsol.Components.Test.Unit.Shared.Exceptions
         public void DeveInicializarComMensagemDeErro()
         {
             //Given
-            AutoMapperNullException exception;;  
+            AutoMapperNullException exception;
 
             //When
             exception = new AutoMapperNullException();

@@ -10,7 +10,7 @@ namespace Optsol.Components.Test.Unit.Shared.Exceptions
         public void DeveInicializarComMensagemDeErro()
         {
             //Given
-            UnitOfWorkNullException exception;;  
+            UnitOfWorkNullException exception;
 
             //When
             exception = new UnitOfWorkNullException();

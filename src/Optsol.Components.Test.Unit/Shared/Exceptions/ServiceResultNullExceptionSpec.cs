@@ -10,7 +10,7 @@ namespace Optsol.Components.Test.Unit.Shared.Exceptions
         public void DeveInicializarComMensagemDeErro()
         {
             //Given
-            ServiceResultNullException exception;;  
+            ServiceResultNullException exception;
 
             //When
             exception = new ServiceResultNullException();

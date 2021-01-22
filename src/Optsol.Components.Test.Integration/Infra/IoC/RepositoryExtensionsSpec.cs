@@ -26,7 +26,7 @@ namespace Optsol.Components.Test.Integration.IoC
                 services.AddRepository<ITestReadRepository, TestReadRepository>("Optsol.Components.Test.Utils");
 
                 var provider = services.BuildServiceProvider();
-                IUnitOfWork unitOfWork = provider.GetRequiredService<IUnitOfWork>(); 
+                IUnitOfWork unitOfWork = provider.GetRequiredService<IUnitOfWork>();
                 ITestReadRepository readRepository = provider.GetRequiredService<ITestReadRepository>();
                 ITestWriteRepository writeRepository = provider.GetRequiredService<ITestWriteRepository>();
                 await writeRepository.InsertAsync(entity);

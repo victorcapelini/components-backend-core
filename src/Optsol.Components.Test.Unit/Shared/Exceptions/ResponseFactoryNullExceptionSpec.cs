@@ -11,7 +11,7 @@ namespace Optsol.Components.Test.Unit.Shared.Exceptions
         public void DeveInicializarComMensagemDeErro()
         {
             //Given
-            ResponseFactoryNullException exception;;  
+            ResponseFactoryNullException exception;
 
             //When
             exception = new ResponseFactoryNullException();

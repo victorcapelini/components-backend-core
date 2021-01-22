@@ -7,8 +7,8 @@ namespace Optsol.Components.Infra.UoW
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private bool disposed = false;
         private ILogger _logger;
+        private bool _disposed = false;
         
         public DbContext Context { get; protected set; }
 
@@ -29,14 +29,14 @@ namespace Optsol.Components.Infra.UoW
 
         private void Dispose(bool disposing)
         {
-            if(!disposed)
+            if(!_disposed)
             {
                 if(disposing)
                 {
                     Context.Dispose();
                 }
             }            
-            disposed = true;
+            _disposed = true;
         }
 
         public void Dispose()

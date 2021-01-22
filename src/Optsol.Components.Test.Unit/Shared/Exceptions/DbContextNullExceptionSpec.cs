@@ -10,7 +10,7 @@ namespace Optsol.Components.Test.Unit.Shared.Exceptions
         public void DeveInicializarComMensagemDeErro()
         {
             //Given
-            DbContextNullException exception;;  
+            DbContextNullException exception;
 
             //When
             exception = new DbContextNullException();

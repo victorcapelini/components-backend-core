@@ -9,9 +9,13 @@ namespace Optsol.Components.Infra.Data
         where TEntity : class, IAggregateRoot<TKey>
     {
         Task InsertAsync(TEntity entity);
+
         Task UpdateAsync(TEntity entity);
+
         Task DeleteAsync(TEntity entity);
+
         Task DeleteAsync(TKey id);
+
         Task<int> SaveChanges();
     }
 }

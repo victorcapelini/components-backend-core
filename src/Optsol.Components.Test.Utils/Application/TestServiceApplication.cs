@@ -12,12 +12,12 @@ namespace Optsol.Components.Test.Utils.Application
     public class TestServiceApplication : BaseServiceApplication<TestEntity, TestViewModel, TestViewModel, InsertTestViewModel, UpdateTestViewModel>, ITestServiceApplication
     {
         public TestServiceApplication(
-            IMapper mapper, 
-            ILogger<BaseServiceApplication<TestEntity, TestViewModel, TestViewModel, InsertTestViewModel, UpdateTestViewModel>> logger, 
-            IServiceResultFactory serviceResultFactory, 
-            IUnitOfWork unitOfWork, 
-            IReadRepository<TestEntity, Guid> readRepository, 
-            IWriteRepository<TestEntity, Guid> writeRepository) 
+            IMapper mapper,
+            ILogger<BaseServiceApplication<TestEntity, TestViewModel, TestViewModel, InsertTestViewModel, UpdateTestViewModel>> logger,
+            IServiceResultFactory serviceResultFactory,
+            IUnitOfWork unitOfWork,
+            IReadRepository<TestEntity, Guid> readRepository,
+            IWriteRepository<TestEntity, Guid> writeRepository)
             : base(mapper, logger, serviceResultFactory, unitOfWork, readRepository, writeRepository)
         {
         }

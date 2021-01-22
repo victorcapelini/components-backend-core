@@ -75,7 +75,7 @@ namespace Optsol.Components.Test.Integration.Application
             modelResult.DataList.Should().HaveCount(3);
             modelResult.DataList.Where(w => w.Nome.Equals(model.Nome)).Should().HaveCount(3);
             modelResult.DataList.Where(w => w.Contato.Equals(model.Contato)).Should().HaveCount(3);
-        } 
+        }
 
         [Fact]
         public async Task Deve_Buscar_Registro_Por_Id_Pelo_Servico()
@@ -106,7 +106,7 @@ namespace Optsol.Components.Test.Integration.Application
             modelResult.Should().NotBeNull();
             modelResult.Data.Nome.Should().Be(model.Nome);
             modelResult.Data.Contato.Should().Be(model.Contato);
-        } 
+        }
 
         [Fact]
         public async Task Deve_Inserir_Registro_Pelo_Servico()
@@ -156,7 +156,7 @@ namespace Optsol.Components.Test.Integration.Application
 
             var provider = services.BuildServiceProvider();
             ITestServiceApplication serviceApplication = provider.GetRequiredService<ITestServiceApplication>();
-            
+
             await serviceApplication.InsertAsync(model);
 
             var data = (await serviceApplication.GetAllAsync()).DataList.Single();
@@ -196,11 +196,11 @@ namespace Optsol.Components.Test.Integration.Application
 
             var provider = services.BuildServiceProvider();
             ITestServiceApplication serviceApplication = provider.GetRequiredService<ITestServiceApplication>();
-            
+
             await serviceApplication.InsertAsync(model);
 
             var data = (await serviceApplication.GetAllAsync()).DataList.Single();
-            
+
             //When
             var modelResult = await serviceApplication.DeleteAsync(data.Id);
 
@@ -254,7 +254,7 @@ namespace Optsol.Components.Test.Integration.Application
 
             var provider = services.BuildServiceProvider();
             ITestServiceApplication serviceApplication = provider.GetRequiredService<ITestServiceApplication>();
-            
+
             await serviceApplication.InsertAsync(model);
 
             var data = (await serviceApplication.GetAllAsync()).DataList.Single();

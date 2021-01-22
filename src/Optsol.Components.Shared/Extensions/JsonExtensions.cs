@@ -8,7 +8,7 @@ namespace Optsol.Components.Shared.Extensions
         {
             if (source == null) return "{}";
 
-            return JsonConvert.SerializeObject(source, Formatting.Indented, 
+            return JsonConvert.SerializeObject(source, Formatting.Indented,
                 new JsonSerializerSettings
                 {
                     ReferenceLoopHandling = ReferenceLoopHandling.Ignore

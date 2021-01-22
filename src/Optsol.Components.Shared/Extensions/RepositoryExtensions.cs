@@ -9,7 +9,7 @@ namespace Optsol.Components.Shared.Extensions
     {
         public static async Task<IEnumerable<TEntity>> AsyncEnumerableToEnumerable<TEntity>(this IAsyncEnumerable<TEntity> source)
         {
-            if(source == null)
+            if (source == null)
                 throw new AsyncEnumerableNullException();
 
             var result = new List<TEntity>();
@@ -19,6 +19,6 @@ namespace Optsol.Components.Shared.Extensions
             }
 
             return result.AsEnumerable();
-        }    
+        }
     }
 }

@@ -10,7 +10,7 @@ namespace Optsol.Components.Test.Unit.Shared.Exceptions
         public void DeveInicializarComMensagemDeErro()
         {
             //Given
-            ConnectionStringNullException exception;;  
+            ConnectionStringNullException exception;
 
             //When
             exception = new ConnectionStringNullException();

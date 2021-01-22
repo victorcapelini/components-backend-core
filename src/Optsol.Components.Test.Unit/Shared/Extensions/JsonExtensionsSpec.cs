@@ -16,7 +16,7 @@ namespace Optsol.Components.Test.Unit.Shared
 
             //When
             var aggregateRootJson = aggregateRoot.ToJson();
-            
+
             //Then
             aggregateRootJson.StartsWith("{").Should().BeTrue();
             aggregateRootJson.EndsWith("}").Should().BeTrue();

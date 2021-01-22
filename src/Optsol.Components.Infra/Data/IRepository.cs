@@ -9,6 +9,7 @@ namespace Optsol.Components.Infra.Data
         where TEntity : class, IAggregateRoot<TKey>
     {
         DbContext Context { get; }
+
         DbSet<TEntity> Set { get; }
     }
 }

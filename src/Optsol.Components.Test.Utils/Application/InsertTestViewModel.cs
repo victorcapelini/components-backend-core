@@ -3,9 +3,10 @@ using Optsol.Components.Application.DataTransferObject;
 
 namespace Optsol.Components.Test.Utils.Application
 {
-    public class InsertTestViewModel: BaseDataTransferObject
+    public class InsertTestViewModel : BaseDataTransferObject
     {
         public string Nome { get; set; }
+
         public string Contato { get; set; }
 
         public override void Validate()
