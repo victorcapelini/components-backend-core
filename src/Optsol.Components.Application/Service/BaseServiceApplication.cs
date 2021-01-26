@@ -86,7 +86,7 @@ namespace Optsol.Components.Application.Service
             _logger?.LogInformation($"Método: { nameof(InsertAsync) } Mapper: { typeof(TInsertData).Name } To: { typeof(TEntity).Name } Result: { entity.ToJson() }");
 
             entity.Validate();
-            
+
             LogNotifications(nameof(InsertAsync), serviceResult);
 
             await _writeRepository.InsertAsync(entity);
@@ -103,7 +103,10 @@ namespace Optsol.Components.Application.Service
             data.Validate();
             if (data.Invalid)
             {
-                serviceResult.AddNotifications(data);
+                serviceResult
+                    .SetInvalid()
+                    .SetMessage("Invalid ViewModel");
+
                 LogNotifications(nameof(UpdateAsync), serviceResult);
                 return serviceResult;
             }
@@ -116,7 +119,10 @@ namespace Optsol.Components.Application.Service
             _logger?.LogInformation($"Método: { nameof(UpdateAsync) } Mapper: { typeof(TUpdateData).Name } To: { typeof(TEntity).Name } Result: { entity.ToJson() }");
 
             entity.Validate();
-            serviceResult.AddNotifications((entity as Entity<Guid>));
+            serviceResult
+                    .SetInvalid()
+                    .SetMessage("Invalid ViewModel");
+
             LogNotifications(nameof(entity), serviceResult);
 
             await _writeRepository.UpdateAsync(entity);
@@ -144,14 +150,17 @@ namespace Optsol.Components.Application.Service
             if (serviceResult.Invalid) return false;
             if ((await _unitOfWork.CommitAsync())) return true;
 
-            serviceResult.AddNotification("Commit", "Houve um problema ao salvar os dados!");
+            serviceResult
+                .SetInvalid()
+                .SetMessage("Houve um problema ao salvar os dados!");
+
             return false;
         }
 
         private void LogNotifications(string method, ServiceResult serviceResult)
         {
             if (serviceResult.Invalid)
-                _logger?.LogInformation($"Método: { method } Valid: { serviceResult.Valid } Notifications: { serviceResult.Notifications.ToJson() }");
+                _logger?.LogInformation($"Método: { method } { nameof(serviceResult.Valid) }: { serviceResult.Valid } { nameof(serviceResult.Message) }: { serviceResult.Message }");
         }
 
         public virtual void Dispose()
