@@ -4,7 +4,7 @@ using Optsol.Components.Domain.Entities;
 
 namespace Optsol.Components.Service
 {
-    public interface IServiceApplication : IBaseServiceApplication<AggregateRoot, BaseDataTransferObject, BaseDataTransferObject, BaseDataTransferObject, BaseDataTransferObject>
+    public interface IServiceApplication : IBaseServiceApplication<AggregateRoot, BaseViewModel, BaseViewModel, BaseViewModel, BaseViewModel>
     {
     }
 }

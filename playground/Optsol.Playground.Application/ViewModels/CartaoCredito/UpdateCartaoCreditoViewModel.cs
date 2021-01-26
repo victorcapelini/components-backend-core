@@ -4,7 +4,7 @@ using Optsol.Components.Application.DataTransferObject;
 
 namespace Optsol.Playground.Application.ViewModels.CartaoCredito
 {
-    public class UpdateCartaoCreditoViewModel : BaseDataTransferObject
+    public class UpdateCartaoCreditoViewModel : BaseViewModel
     {
         public Guid Id { get; set; }
         public string NomeCliente { get; set; }

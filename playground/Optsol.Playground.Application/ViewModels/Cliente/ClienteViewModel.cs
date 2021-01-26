@@ -3,7 +3,7 @@ using Optsol.Components.Application.DataTransferObject;
 
 namespace Optsol.Playground.Application.ViewModels.Cliente
 {
-    public class ClienteViewModel : BaseDataTransferObject
+    public class ClienteViewModel : BaseViewModel
     {
         public string Id { get; set; }
         public string Nome { get; set; }

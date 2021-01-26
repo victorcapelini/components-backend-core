@@ -30,7 +30,7 @@ namespace Optsol.Components.Service.Response
     }
 
     public class Response<TData> : Response
-        where TData : BaseDataTransferObject
+        where TData : BaseViewModel
     {
         public TData Data { get; set; }
 
@@ -55,7 +55,7 @@ namespace Optsol.Components.Service.Response
     }
 
     public class ResponseList<TData> : Response
-        where TData : BaseDataTransferObject
+        where TData : BaseViewModel
     {
         public IEnumerable<TData> DataList { get; set; }
 

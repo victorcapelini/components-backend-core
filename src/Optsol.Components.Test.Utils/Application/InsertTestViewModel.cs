@@ -3,7 +3,7 @@ using Optsol.Components.Application.DataTransferObject;
 
 namespace Optsol.Components.Test.Utils.Application
 {
-    public class InsertTestViewModel : BaseDataTransferObject
+    public class InsertTestViewModel : BaseViewModel
     {
         public string Nome { get; set; }
 

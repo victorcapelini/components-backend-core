@@ -8,9 +8,9 @@ namespace Optsol.Components.Service.Response
         Response Create(ServiceResult serviceResult);
 
         Response<TData> Create<TData>(ServiceResult<TData> serviceResult)
-            where TData : BaseDataTransferObject;
+            where TData : BaseViewModel;
 
         ResponseList<TData> Create<TData>(ServiceResultList<TData> serviceResult)
-            where TData : BaseDataTransferObject;
+            where TData : BaseViewModel;
     }
 }

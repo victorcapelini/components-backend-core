@@ -8,10 +8,10 @@ namespace Optsol.Components.Service
 {
     public interface IApiControllerBase<TEntity, TGetByIdDto, TGetAllDto, TInsertData, TUpdateData>
         where TEntity : AggregateRoot
-        where TGetByIdDto : BaseDataTransferObject
-        where TGetAllDto : BaseDataTransferObject
-        where TInsertData : BaseDataTransferObject
-        where TUpdateData : BaseDataTransferObject
+        where TGetByIdDto : BaseViewModel
+        where TGetAllDto : BaseViewModel
+        where TInsertData : BaseViewModel
+        where TUpdateData : BaseViewModel
     {
         Task<IActionResult> GetAllAsync();
 

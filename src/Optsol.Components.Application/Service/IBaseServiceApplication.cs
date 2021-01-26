@@ -8,10 +8,10 @@ namespace Optsol.Components.Application.Service
 {
     public interface IBaseServiceApplication<TEntity, TGetByIdDto, TGetAllDto, TInsertData, TUpdateData> : IDisposable
         where TEntity : AggregateRoot
-        where TGetByIdDto : BaseDataTransferObject
-        where TGetAllDto : BaseDataTransferObject
-        where TInsertData : BaseDataTransferObject
-        where TUpdateData : BaseDataTransferObject
+        where TGetByIdDto : BaseViewModel
+        where TGetAllDto : BaseViewModel
+        where TInsertData : BaseViewModel
+        where TUpdateData : BaseViewModel
     {
         Task<ServiceResult<TGetByIdDto>> GetByIdAsync(Guid id);
 

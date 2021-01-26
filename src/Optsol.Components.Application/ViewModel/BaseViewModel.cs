@@ -1,9 +1,12 @@
 using Flunt.Notifications;
+using System.Runtime.Serialization;
 
 namespace Optsol.Components.Application.DataTransferObject
 {
-    public abstract class BaseDataTransferObject : Notifiable
+    [DataContract]
+    public abstract class BaseViewModel : Notifiable
     {
         public abstract void Validate();
+
     }
 }

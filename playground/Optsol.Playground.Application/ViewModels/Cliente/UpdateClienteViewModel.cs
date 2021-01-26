@@ -4,7 +4,7 @@ using Optsol.Components.Application.DataTransferObject;
 
 namespace Optsol.Playground.Application.ViewModels.Cliente
 {
-    public class UpdateClienteViewModel : BaseDataTransferObject
+    public class UpdateClienteViewModel : BaseViewModel
     {
         public Guid Id { get; set; }
         public NomeObjectViewModel Nome { get; set; }

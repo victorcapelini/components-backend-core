@@ -16,10 +16,10 @@ namespace Optsol.Components.Application.Service
     public class BaseServiceApplication<TEntity, TGetByIdDto, TGetAllDto, TInsertData, TUpdateData>
         : IBaseServiceApplication<TEntity, TGetByIdDto, TGetAllDto, TInsertData, TUpdateData>, IDisposable
         where TEntity : AggregateRoot
-        where TGetByIdDto : BaseDataTransferObject
-        where TGetAllDto : BaseDataTransferObject
-        where TInsertData : BaseDataTransferObject
-        where TUpdateData : BaseDataTransferObject
+        where TGetByIdDto : BaseViewModel
+        where TGetAllDto : BaseViewModel
+        where TInsertData : BaseViewModel
+        where TUpdateData : BaseViewModel
     {
         protected readonly IMapper _mapper;
         protected readonly ILogger _logger;

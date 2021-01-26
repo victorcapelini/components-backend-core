@@ -1,17 +1,22 @@
 using System;
+using System.Runtime.Serialization;
 using Flunt.Validations;
 using Optsol.Components.Application.DataTransferObject;
 
 namespace Optsol.Components.Test.Utils.Application
 {
-    public class TestViewModel : BaseDataTransferObject
+    public class TestViewModel : BaseViewModel
     {
+        [DataMember]
         public Guid Id { get; set; }
 
+        [DataMember]
         public string Nome { get; set; }
 
+        [DataMember]
         public string Contato { get; set; }
 
+        [DataMember]
         public string Ativo { get; set; }
 
         public override void Validate()

@@ -6,13 +6,13 @@ namespace Optsol.Components.Application.Result
     public class ServiceResultFactory : IServiceResultFactory
     {
         public ServiceResult<TDto> Create<TDto>(TDto viewModel)
-            where TDto : BaseDataTransferObject
+            where TDto : BaseViewModel
         {
             return new ServiceResult<TDto>(viewModel);
         }
 
         public ServiceResultList<TDto> Create<TDto>(IEnumerable<TDto> viewModels)
-            where TDto : BaseDataTransferObject
+            where TDto : BaseViewModel
         {
             return new ServiceResultList<TDto>(viewModels);
         }

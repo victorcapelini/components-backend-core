@@ -4,7 +4,7 @@ using Optsol.Components.Application.DataTransferObject;
 
 namespace Optsol.Components.Test.Utils.Application
 {
-    public class UpdateTestViewModel : BaseDataTransferObject
+    public class UpdateTestViewModel : BaseViewModel
     {
         public Guid Id { get; set; }
 

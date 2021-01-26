@@ -5,7 +5,7 @@ using Optsol.Playground.Application.ViewModels.CartaoCredito;
 
 namespace Optsol.Playground.Application.ViewModels.Cliente
 {
-    public class ClienteComCartoesViewModel : BaseDataTransferObject
+    public class ClienteComCartoesViewModel : BaseViewModel
     {
         public string Id { get; set; }
         public string Nome { get; set; }

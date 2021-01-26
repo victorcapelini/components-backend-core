@@ -1,8 +1,11 @@
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using FluentAssertions;
 using Moq;
+using Optsol.Components.Application.Result;
 using Optsol.Components.Service;
 using Optsol.Components.Service.Response;
 using Optsol.Components.Shared.Extensions;
@@ -67,6 +70,48 @@ namespace Optsol.Components.Test.Unit.Service
             logger.Logs.Any(a => a.Equals(msgInsertAsync)).Should().BeTrue();
             logger.Logs.Any(a => a.Equals(msgUpdateAsync)).Should().BeTrue();
             logger.Logs.Any(a => a.Equals(msgDeleteAsync)).Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Nao_Deve_Serializar_Campos_Da_Classe_Notifiable()
+        {
+            //Given
+            var model = new TestViewModel();
+
+            var entityList = new List<TestViewModel>();
+            entityList.Add(new TestViewModel { Id = Guid.NewGuid(), Nome = "Weslley", Contato = "weslley.carneiro@outlook.com", Ativo = "Ativo" });
+            entityList.Add(new TestViewModel { Id = Guid.NewGuid(), Nome = "Bruno", Contato = "weslley.carneiro@outlook.com", Ativo = "Ativo" });
+            entityList.Add(new TestViewModel { Id = Guid.NewGuid(), Nome = "Souza", Contato = "weslley.carneiro@outlook.com", Ativo = "Ativo" });
+            entityList.Add(new TestViewModel { Id = Guid.NewGuid(), Nome = "Carneiro", Contato = "weslley.carneiro@outlook.com", Ativo = "Ativo" });
+
+            var serviceResult = new ServiceResultList<TestViewModel>(entityList);
+
+            var responseList = new ResponseList<TestViewModel>(serviceResult.DataList, serviceResult.Valid, serviceResult.Notifications.Select(s => s.Message));
+
+            var logger = new XunitLogger<ApiControllerBase<TestEntity
+                , TestViewModel
+                , TestViewModel
+                , InsertTestViewModel
+                , UpdateTestViewModel>>();
+
+            Mock<IMapper> mapperMock = new Mock<IMapper>();
+
+            var mockApplicationService = new Mock<ITestServiceApplication>();
+            mockApplicationService.Setup(services => services.GetAllAsync()).ReturnsAsync(serviceResult);
+
+            var mockResponseFactory = new Mock<IResponseFactory>();
+            mockResponseFactory.Setup(response => response.Create(It.IsAny<ServiceResultList<TestViewModel>>())).Returns(responseList);
+
+            var controller = new TestController(logger, mockApplicationService.Object, mockResponseFactory.Object);
+
+            //When
+            var actionResult = await controller.GetAllAsync();
+            var actionResultJson = actionResult.ToJson();
+
+            //Then
+            actionResult.Should().NotBeNull();
+            actionResultJson.Should().NotBeNullOrEmpty();
+            actionResultJson.Should().NotContain(nameof(TestViewModel.Notifications));
         }
     }
 }
