@@ -113,5 +113,47 @@ namespace Optsol.Components.Test.Unit.Service
             actionResultJson.Should().NotBeNullOrEmpty();
             actionResultJson.Should().NotContain(nameof(TestViewModel.Notifications));
         }
+
+        [Fact]
+        public async Task Deve_Retornar_Com_Erros_De_Validacao()
+        {
+            //Given
+            var model = new TestViewModel();
+
+            var entityList = new List<TestViewModel>();
+            entityList.Add(new TestViewModel { Id = Guid.NewGuid() });
+            entityList.Add(new TestViewModel { Id = Guid.NewGuid() });
+            entityList.Add(new TestViewModel { Id = Guid.NewGuid() });
+            entityList.Add(new TestViewModel { Id = Guid.NewGuid() });
+
+            var serviceResult = new ServiceResultList<TestViewModel>(entityList);
+
+            var responseList = new ResponseList<TestViewModel>(serviceResult.Data, serviceResult.Valid, serviceResult.Notifications.Select(s => s.Message));
+
+            var logger = new XunitLogger<ApiControllerBase<TestEntity
+                , TestViewModel
+                , TestViewModel
+                , InsertTestViewModel
+                , UpdateTestViewModel>>();
+
+            Mock<IMapper> mapperMock = new Mock<IMapper>();
+
+            var mockApplicationService = new Mock<ITestServiceApplication>();
+            mockApplicationService.Setup(services => services.GetAllAsync()).ReturnsAsync(serviceResult);
+
+            var mockResponseFactory = new Mock<IResponseFactory>();
+            mockResponseFactory.Setup(response => response.Create(It.IsAny<ServiceResultList<TestViewModel>>())).Returns(responseList);
+
+            var controller = new TestController(logger, mockApplicationService.Object, mockResponseFactory.Object);
+
+            //When
+            var actionResult = await controller.GetAllAsync();
+            var actionResultJson = actionResult.ToJson();
+
+            //Then
+            actionResult.Should().NotBeNull();
+            actionResultJson.Should().NotBeNullOrEmpty();
+            actionResultJson.Should().NotContain(nameof(TestViewModel.Notifications));
+        }
     }
 }

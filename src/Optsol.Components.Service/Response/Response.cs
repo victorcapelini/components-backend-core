@@ -34,9 +34,16 @@ namespace Optsol.Components.Service.Response
     {
         public TData Data { get; set; }
 
-        public Response()
+        public Response() 
+            : base()
         {
 
+        }
+
+        public Response(TData viewModel)
+            : this()
+        {
+            Data = viewModel;
         }
 
         public Response(TData viewModel, bool success)
@@ -60,14 +67,21 @@ namespace Optsol.Components.Service.Response
         public IEnumerable<TData> Data { get; set; }
 
         public ResponseList()
+            : base()
         {
 
         }
 
-        public ResponseList(IEnumerable<TData> viewModel, bool success)
+        public ResponseList(IEnumerable<TData> viewModels)
+            : this()
+        {
+            Data = viewModels;
+        }
+
+        public ResponseList(IEnumerable<TData> viewModels, bool success)
             : base(success)
         {
-            Data = viewModel;
+            Data = viewModels;
         }
 
         public ResponseList(IEnumerable<TData> viewModels, bool success, IEnumerable<string> messages)

@@ -2,10 +2,46 @@ using Flunt.Notifications;
 using Optsol.Components.Application.DataTransferObject;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Optsol.Components.Application.Result
 {
-    public class ServiceResult : Notifiable { }
+    public class ServiceResult
+    {
+        public bool Valid { get; private set; }
+
+        public bool Invalid { get; private set; }
+
+        public string Message { get; set; }
+
+        public ServiceResult()
+        {
+            Valid = true;
+            Invalid = false;
+            Message = "Success!";
+        }
+
+        public ServiceResult SetValid()
+        {
+            Valid = !Invalid;
+
+            return this;
+        }
+
+        public ServiceResult SetInvalid()
+        {
+            Invalid = !Valid;
+
+            return this;
+        }
+
+        public ServiceResult SetMessage(string message)
+        {
+            Message = message;
+
+            return this;
+        }
+    }
 
     public class ServiceResult<TDto> : ServiceResult
         where TDto : BaseViewModel
@@ -16,8 +52,15 @@ namespace Optsol.Components.Application.Result
         {
             Data = data;
 
-            Data.Validate();
-            AddNotifications(data);
+            if (Data.Valid)
+            {
+                SetValid();
+            }
+
+            if(Data.Invalid)
+            {
+                SetInvalid();
+            }
         }
     }
 
@@ -29,22 +72,16 @@ namespace Optsol.Components.Application.Result
         public ServiceResultList(IEnumerable<TDto> dataList)
         {
             Data = dataList;
-            
-            executeValidation(dataList, AddNotifications);
-            foreach (var data in Data)
+
+            if (Data.All(data => data.Invalid))
             {
-                data.Validate();
-                AddNotifications(data);
+                SetValid();
+            }
+
+            if (Data.Any(a => a.Invalid))
+            {
+                SetInvalid();
             }
         }
-
-        Action<IEnumerable<TDto>, Action<TDto>> executeValidation = (dataList, addNotifications) =>
-        {
-            foreach (var data in dataList)
-            {
-                data.Validate();
-                addNotifications(data);
-            }
-        };
     }
 }

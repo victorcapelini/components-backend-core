@@ -71,7 +71,10 @@ namespace Optsol.Components.Application.Service
             data.Validate();
             if (data.Invalid)
             {
-                serviceResult.AddNotifications(data);
+                serviceResult
+                    .SetInvalid()
+                    .SetMessage("Invalid ViewModel");
+
                 LogNotifications(nameof(InsertAsync), serviceResult);
                 return serviceResult;
             }
@@ -83,7 +86,7 @@ namespace Optsol.Components.Application.Service
             _logger?.LogInformation($"Método: { nameof(InsertAsync) } Mapper: { typeof(TInsertData).Name } To: { typeof(TEntity).Name } Result: { entity.ToJson() }");
 
             entity.Validate();
-            serviceResult.AddNotifications((entity as Entity<Guid>));
+            
             LogNotifications(nameof(InsertAsync), serviceResult);
 
             await _writeRepository.InsertAsync(entity);
