@@ -86,7 +86,7 @@ namespace Optsol.Components.Test.Unit.Service
 
             var serviceResult = new ServiceResultList<TestViewModel>(entityList);
 
-            var responseList = new ResponseList<TestViewModel>(serviceResult.DataList, serviceResult.Valid, serviceResult.Notifications.Select(s => s.Message));
+            var responseList = new ResponseList<TestViewModel>(serviceResult.Data, serviceResult.Valid, serviceResult.Notifications.Select(s => s.Message));
 
             var logger = new XunitLogger<ApiControllerBase<TestEntity
                 , TestViewModel

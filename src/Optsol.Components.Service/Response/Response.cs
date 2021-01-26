@@ -39,16 +39,16 @@ namespace Optsol.Components.Service.Response
 
         }
 
-        public Response(TData data, bool success)
+        public Response(TData viewModel, bool success)
             : base(success)
         {
-            Data = data;
+            Data = viewModel;
             Success = success;
             Failure = !Success;
         }
 
-        public Response(TData data, bool success, IEnumerable<string> messages)
-            : this(data, success)
+        public Response(TData viewModel, bool success, IEnumerable<string> messages)
+            : this(viewModel, success)
         {
             Messages = messages;
         }
@@ -57,21 +57,21 @@ namespace Optsol.Components.Service.Response
     public class ResponseList<TData> : Response
         where TData : BaseViewModel
     {
-        public IEnumerable<TData> DataList { get; set; }
+        public IEnumerable<TData> Data { get; set; }
 
         public ResponseList()
         {
 
         }
 
-        public ResponseList(IEnumerable<TData> dataList, bool success)
+        public ResponseList(IEnumerable<TData> viewModel, bool success)
             : base(success)
         {
-            DataList = dataList;
+            Data = viewModel;
         }
 
-        public ResponseList(IEnumerable<TData> dataList, bool success, IEnumerable<string> messages)
-            : this(dataList, success)
+        public ResponseList(IEnumerable<TData> viewModels, bool success, IEnumerable<string> messages)
+            : this(viewModels, success)
         {
             Messages = messages;
         }

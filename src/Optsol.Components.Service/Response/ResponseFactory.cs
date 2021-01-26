@@ -19,7 +19,7 @@ namespace Optsol.Components.Service.Response
 
         public ResponseList<TData> Create<TData>(ServiceResultList<TData> serviceResult) where TData : BaseViewModel
         {
-            return new ResponseList<TData>(serviceResult.DataList, serviceResult.Valid, serviceResult.Notifications.Select(s => s.Message));
+            return new ResponseList<TData>(serviceResult.Data, serviceResult.Valid, serviceResult.Notifications.Select(s => s.Message));
         }
     }
 }

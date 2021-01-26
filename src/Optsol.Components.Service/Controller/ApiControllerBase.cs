@@ -59,27 +59,27 @@ namespace Optsol.Components.Service
         }
 
         [HttpPost]
-        public async Task<IActionResult> InsertAsync(TInsertData data)
+        public async Task<IActionResult> InsertAsync(TInsertData viewModel)
         {
-            if (data == null)
+            if (viewModel == null)
                 return NoContent();
 
-            _logger?.LogInformation($"Método: { nameof(InsertAsync) }({{ viewModel:{ data.ToJson() } }})");
+            _logger?.LogInformation($"Método: { nameof(InsertAsync) }({{ viewModel:{ viewModel.ToJson() } }})");
 
-            var serviceResult = await _serviceApplication.InsertAsync(data);
+            var serviceResult = await _serviceApplication.InsertAsync(viewModel);
 
             return Ok(_responseFactory.Create(serviceResult));
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateAsync(TUpdateData data)
+        public async Task<IActionResult> UpdateAsync(TUpdateData viewModel)
         {
-            if (data == null)
+            if (viewModel == null)
                 return NoContent();
 
-            _logger?.LogInformation($"Método: { nameof(UpdateAsync) }({{ viewModel:{ data.ToJson() } }})");
+            _logger?.LogInformation($"Método: { nameof(UpdateAsync) }({{ viewModel:{ viewModel.ToJson() } }})");
 
-            var serviceResult = await _serviceApplication.UpdateAsync(data);
+            var serviceResult = await _serviceApplication.UpdateAsync(viewModel);
 
             return Ok(_responseFactory.Create(serviceResult));
         }

@@ -39,9 +39,9 @@ namespace Optsol.Components.Test.Integration.Application
             var modelResult = await serviceApplication.GetAllAsync();
 
             //Then            
-            modelResult.DataList.Should().HaveCount(1);
-            modelResult.DataList.First().Nome.Should().Be(entity.Nome.ToString());
-            modelResult.DataList.First().Contato.Should().Be(entity.Email.ToString());
+            modelResult.Data.Should().HaveCount(1);
+            modelResult.Data.First().Nome.Should().Be(entity.Nome.ToString());
+            modelResult.Data.First().Contato.Should().Be(entity.Email.ToString());
         }
 
         [Fact]
@@ -72,9 +72,9 @@ namespace Optsol.Components.Test.Integration.Application
             modelResult.Invalid.Should().BeFalse();
             modelResult.Notifications.Should().HaveCount(0);
 
-            modelResult.DataList.Should().HaveCount(3);
-            modelResult.DataList.Where(w => w.Nome.Equals(model.Nome)).Should().HaveCount(3);
-            modelResult.DataList.Where(w => w.Contato.Equals(model.Contato)).Should().HaveCount(3);
+            modelResult.Data.Should().HaveCount(3);
+            modelResult.Data.Where(w => w.Nome.Equals(model.Nome)).Should().HaveCount(3);
+            modelResult.Data.Where(w => w.Contato.Equals(model.Contato)).Should().HaveCount(3);
         }
 
         [Fact]
@@ -97,7 +97,7 @@ namespace Optsol.Components.Test.Integration.Application
             //When
             await serviceApplication.InsertAsync(model);
             var list = await serviceApplication.GetAllAsync();
-            var modelResult = await serviceApplication.GetByIdAsync(list.DataList.Single().Id);
+            var modelResult = await serviceApplication.GetByIdAsync(list.Data.Single().Id);
 
             //Then
             modelResult.Invalid.Should().BeFalse();
@@ -133,11 +133,11 @@ namespace Optsol.Components.Test.Integration.Application
             modelResult.Invalid.Should().BeFalse();
             modelResult.Notifications.Should().HaveCount(0);
 
-            entity.DataList.Should().HaveCount(1);
-            entity.DataList.Single().Id.Should().NotBeEmpty();
-            entity.DataList.Single().Nome.Should().Be(model.Nome);
-            entity.DataList.Single().Contato.Should().Be(model.Contato);
-            entity.DataList.Single().Ativo.Should().Be("Inativo");
+            entity.Data.Should().HaveCount(1);
+            entity.Data.Single().Id.Should().NotBeEmpty();
+            entity.Data.Single().Nome.Should().Be(model.Nome);
+            entity.Data.Single().Contato.Should().Be(model.Contato);
+            entity.Data.Single().Ativo.Should().Be("Inativo");
         }
 
         [Fact]
@@ -159,7 +159,7 @@ namespace Optsol.Components.Test.Integration.Application
 
             await serviceApplication.InsertAsync(model);
 
-            var data = (await serviceApplication.GetAllAsync()).DataList.Single();
+            var data = (await serviceApplication.GetAllAsync()).Data.Single();
             var updateModel = new UpdateTestViewModel();
             updateModel.Id = data.Id;
             updateModel.Nome = $"Weslley Alterado";
@@ -173,11 +173,11 @@ namespace Optsol.Components.Test.Integration.Application
             modelResult.Invalid.Should().BeFalse();
             modelResult.Notifications.Should().HaveCount(0);
 
-            entity.DataList.Should().HaveCount(1);
-            entity.DataList.Single().Id.Should().NotBeEmpty();
-            entity.DataList.Single().Nome.Should().Be(updateModel.Nome);
-            entity.DataList.Single().Contato.Should().Be(updateModel.Contato);
-            entity.DataList.Single().Ativo.Should().Be("Inativo");
+            entity.Data.Should().HaveCount(1);
+            entity.Data.Single().Id.Should().NotBeEmpty();
+            entity.Data.Single().Nome.Should().Be(updateModel.Nome);
+            entity.Data.Single().Contato.Should().Be(updateModel.Contato);
+            entity.Data.Single().Ativo.Should().Be("Inativo");
         }
 
         [Fact]
@@ -199,7 +199,7 @@ namespace Optsol.Components.Test.Integration.Application
 
             await serviceApplication.InsertAsync(model);
 
-            var data = (await serviceApplication.GetAllAsync()).DataList.Single();
+            var data = (await serviceApplication.GetAllAsync()).Data.Single();
 
             //When
             var modelResult = await serviceApplication.DeleteAsync(data.Id);
@@ -209,7 +209,7 @@ namespace Optsol.Components.Test.Integration.Application
             modelResult.Invalid.Should().BeFalse();
             modelResult.Notifications.Should().HaveCount(0);
 
-            entity.DataList.Should().HaveCount(0);
+            entity.Data.Should().HaveCount(0);
         }
 
         [Fact]
@@ -257,7 +257,7 @@ namespace Optsol.Components.Test.Integration.Application
 
             await serviceApplication.InsertAsync(model);
 
-            var data = (await serviceApplication.GetAllAsync()).DataList.Single();
+            var data = (await serviceApplication.GetAllAsync()).Data.Single();
             var updateModel = new UpdateTestViewModel();
             updateModel.Id = data.Id;
             updateModel.Nome = "";

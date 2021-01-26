@@ -1,5 +1,6 @@
 using Flunt.Notifications;
 using Optsol.Components.Application.DataTransferObject;
+using System;
 using System.Collections.Generic;
 
 namespace Optsol.Components.Application.Result
@@ -23,17 +24,27 @@ namespace Optsol.Components.Application.Result
     public class ServiceResultList<TDto> : ServiceResult
         where TDto : BaseViewModel
     {
-        public IEnumerable<TDto> DataList { get; private set; }
+        public IEnumerable<TDto> Data { get; private set; }
 
         public ServiceResultList(IEnumerable<TDto> dataList)
         {
-            DataList = dataList;
-
-            foreach (var data in DataList)
+            Data = dataList;
+            
+            executeValidation(dataList, AddNotifications);
+            foreach (var data in Data)
             {
                 data.Validate();
                 AddNotifications(data);
             }
         }
+
+        Action<IEnumerable<TDto>, Action<TDto>> executeValidation = (dataList, addNotifications) =>
+        {
+            foreach (var data in dataList)
+            {
+                data.Validate();
+                addNotifications(data);
+            }
+        };
     }
 }

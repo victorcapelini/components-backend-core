@@ -7,8 +7,8 @@ namespace Optsol.Components.Application.Result
     {
         ServiceResult Create();
 
-        ServiceResult<TDto> Create<TDto>(TDto dto) where TDto : BaseViewModel;
+        ServiceResult<TDto> Create<TDto>(TDto viewModel) where TDto : BaseViewModel;
 
-        ServiceResultList<TDto> Create<TDto>(IEnumerable<TDto> dto) where TDto : BaseViewModel;
+        ServiceResultList<TDto> Create<TDto>(IEnumerable<TDto> viewModels) where TDto : BaseViewModel;
     }
 }
